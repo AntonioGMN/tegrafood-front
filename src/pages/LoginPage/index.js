@@ -7,18 +7,15 @@ import H1 from "../../components/h1";
 import Box from "../../components/box";
 import FoodPresentationImg from "../../components/apresentationImage";
 import GreyText from "../../components/greyText";
-import { AiOutlineMail } from "react-icons/ai";
+import { AiOutlineMail, AiOutlineLock } from "react-icons/ai";
 import SeparatorLine from "../../components/separatorLine";
+import handlerInput from "../../utils";
 
 export default function LoginPage() {
 	const [formData, setFormData] = useState({
 		email: "",
 		password: "",
 	});
-
-	function handlerInput(e) {
-		setFormData({ ...formData, [e.target.name]: e.target.value });
-	}
 
 	return (
 		<>
@@ -29,22 +26,23 @@ export default function LoginPage() {
 					<GreyText>faça o login para continuar</GreyText>
 					<Form>
 						<div>
-							<AiOutlineMail size={20} color="green" />
+							<AiOutlineMail size={20} />
 							<input
 								placeholder="Seu e-mail"
 								type="email"
 								name="email"
 								value={formData.email}
-								onChange={(e) => handlerInput(e)}
+								onChange={(e) => handlerInput(e, formData, setFormData)}
 							/>
 						</div>
 						<div>
+							<AiOutlineLock size={20} />
 							<input
 								placeholder="Senha"
 								type="password"
 								name="password"
 								value={formData.password}
-								onChange={(e) => handlerInput(e)}
+								onChange={(e) => handlerInput(e, formData, setFormData)}
 							/>
 						</div>
 						<Button type="submit">Entrar</Button>

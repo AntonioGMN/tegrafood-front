@@ -39,8 +39,9 @@ export const Form = styled.form`
 	}
 
 	input {
-		border: none;
 		width: 100%;
+		border: none;
+		outline: none
 
 		input:focus {
 			font-weight: normal;

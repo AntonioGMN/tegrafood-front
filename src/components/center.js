@@ -8,6 +8,8 @@ const Container = styled.main`
 	min-height: 100vh;
 	width: 100%;
 
+	position: relative;
+
 	@media (max-width: 700px) {
 		justify-content: center;
 		gap: 15px;

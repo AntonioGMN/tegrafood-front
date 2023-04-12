@@ -4,6 +4,12 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import H1 from "../../components/h1";
 import Button from "../../components/button";
+import FoodPresentationImg from "../../components/apresentationImage";
+import handlerInput from "../../utils";
+import GreyText from "../../components/greyText";
+import { FiUser } from "react-icons/fi";
+import { AiOutlineMail, AiOutlineLock } from "react-icons/ai";
+import ArrowReturnButton from "../../components/arrowReturnButton";
 
 export default function SignUpPage() {
 	const [formData, setFormData] = useState({
@@ -13,53 +19,66 @@ export default function SignUpPage() {
 		confirmPassword: "",
 	});
 
-	function handlerInput(e) {
-		setFormData({ ...formData, [e.target.name]: e.target.value });
-	}
-
 	return (
-		<Container>
-			<center>
-				<H1>Cadastre-se</H1>
-				<Form>
-					<input
-						placeholder="Nome"
-						type="text"
-						name="name"
-						value={formData.name}
-						onChange={(e) => handlerInput(e)}
-						required
-					/>
-					<input
-						placeholder="Email"
-						type="email"
-						name="email"
-						value={formData.email}
-						onChange={(e) => handlerInput(e)}
-						required
-					/>
-					<input
-						placeholder="Senha"
-						type="password"
-						name="password"
-						value={formData.password}
-						onChange={(e) => handlerInput(e)}
-						required
-					/>
-					<input
-						placeholder="Confirme Senha"
-						type="password"
-						name="confirmPassword"
-						value={formData.confirmPassword}
-						onChange={(e) => handlerInput(e)}
-						required
-					/>
-					<Button>Cadastre-se</Button>
-					<p>
-						Já possui cadastro? <Link to={"/"}>Ir pra página de login</Link>
-					</p>
-				</Form>
-			</center>
-		</Container>
+		<>
+			<FoodPresentationImg />
+			<Container>
+				<center>
+					<H1>Vamos começar!</H1>
+					<GreyText>Crie uma nova conta</GreyText>
+					<Form>
+						<div>
+							<FiUser size={20} />
+							<input
+								placeholder="Nome completo"
+								type="text"
+								name="name"
+								value={formData.name}
+								onChange={(e) => handlerInput(e, formData, setFormData)}
+								required
+							/>
+						</div>
+						<div>
+							<AiOutlineMail size={20} />
+							<input
+								placeholder="Seu e-mail"
+								type="email"
+								name="email"
+								value={formData.email}
+								onChange={(e) => handlerInput(e, formData, setFormData)}
+								required
+							/>
+						</div>
+						<div>
+							<AiOutlineLock size={20} />
+							<input
+								placeholder="senha"
+								type="password"
+								name="password"
+								value={formData.password}
+								onChange={(e) => handlerInput(e, formData, setFormData)}
+								required
+							/>
+						</div>
+						<div>
+							<AiOutlineLock size={20} />
+							<input
+								placeholder="confirme a senha"
+								type="password"
+								name="confirmPassword"
+								value={formData.confirmPassword}
+								onChange={(e) => handlerInput(e, formData, setFormData)}
+								required
+							/>
+						</div>
+						<Button>Cadastre-se</Button>
+						<Link to={"/"}>
+							Já tem uma conta? <span>Entrar</span>
+						</Link>
+					</Form>
+				</center>
+				<ArrowReturnButton />
+			</Container>
+		</>
 	);
 }
