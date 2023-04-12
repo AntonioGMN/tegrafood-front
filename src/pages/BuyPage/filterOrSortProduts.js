@@ -4,10 +4,12 @@ import styled from "styled-components";
 const Section = styled.section`
 	width: 100%;
 	display: flex;
+	justify-content: space-between;
 
 	div {
 		display: flex;
 		gap: 20px;
+		margin: 0 20px;
 	}
 
 	p {

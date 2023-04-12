@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 const Button = styled.button`
 	all: unset;
-	box-sizing: border-box;
 	border-radius: 12px;
 
 	width: 100%;
