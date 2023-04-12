@@ -1,4 +1,4 @@
-import Container from "../../components/center";
+import Container from "../../components/conteiner";
 import { Form } from "../../components/form";
 import Button from "../../components/button";
 import { Link } from "react-router-dom";

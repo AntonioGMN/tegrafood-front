@@ -1,4 +1,4 @@
-import Container from "../../components/center";
+import Container from "../../components/conteiner";
 import { Form } from "../../components/form";
 import { Link } from "react-router-dom";
 import { useState } from "react";

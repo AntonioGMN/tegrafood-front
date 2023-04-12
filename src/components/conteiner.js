@@ -5,7 +5,7 @@ const Container = styled.main`
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	min-height: 100vh;
+	height: 100vh;
 	width: 100%;
 
 	position: relative;
