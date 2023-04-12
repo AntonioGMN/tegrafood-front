@@ -1,9 +1,9 @@
 import Container from "../../components/center";
-import { Form, Button } from "../../components/form";
+import { Form } from "../../components/form";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import H1 from "../../components/h1";
-import Box from "../../components/box";
+import Button from "../../components/button";
 
 export default function SignUpPage() {
 	const [formData, setFormData] = useState({
@@ -19,7 +19,7 @@ export default function SignUpPage() {
 
 	return (
 		<Container>
-			<Box>
+			<center>
 				<H1>Cadastre-se</H1>
 				<Form>
 					<input
@@ -59,7 +59,7 @@ export default function SignUpPage() {
 						Já possui cadastro? <Link to={"/"}>Ir pra página de login</Link>
 					</p>
 				</Form>
-			</Box>
+			</center>
 		</Container>
 	);
 }

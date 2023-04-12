@@ -1,14 +1,12 @@
 import styled from "styled-components";
 
 const H1 = styled.h1`
-	font-style: normal;
-	font-size: 36px;
+	font-size: 20px;
 	font-weight: 700;
-	line-height: 18px;
-	text-align: start;
-	color: white;
-
-	align-self: flex-start;
+	line-height: 30px;
+	letter-spacing: 0.5px;
+	text-align: center;
+	color: #223263;
 
 	@media (max-width: 700px) {
 		width: 100%;

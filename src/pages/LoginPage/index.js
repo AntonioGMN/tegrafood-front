@@ -1,9 +1,14 @@
 import Container from "../../components/center";
-import { Form, Button } from "../../components/form";
+import { Form } from "../../components/form";
+import Button from "../../components/button";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import H1 from "../../components/h1";
 import Box from "../../components/box";
+import FoodPresentationImg from "../../components/apresentationImage";
+import GreyText from "../../components/greyText";
+import { AiOutlineMail } from "react-icons/ai";
+import SeparatorLine from "../../components/separatorLine";
 
 export default function LoginPage() {
 	const [formData, setFormData] = useState({
@@ -16,30 +21,40 @@ export default function LoginPage() {
 	}
 
 	return (
-		<Container>
-			<Box>
-				<H1>Login</H1>
-				<Form>
-					<input
-						placeholder="Email"
-						type="email"
-						name="email"
-						value={formData.email}
-						onChange={(e) => handlerInput(e)}
-					/>
-					<input
-						placeholder="Senha"
-						type="password"
-						name="password"
-						value={formData.password}
-						onChange={(e) => handlerInput(e)}
-					/>
-					<Button type="submit">Entrar</Button>
-					<p>
-						Ainda não possui cadastro? <Link to={"signUp"}>Cadastre-se agora</Link>
-					</p>
-				</Form>
-			</Box>
-		</Container>
+		<>
+			<FoodPresentationImg />
+			<Container>
+				<Box>
+					<H1>Bem vindo!</H1>
+					<GreyText>faça o login para continuar</GreyText>
+					<Form>
+						<div>
+							<AiOutlineMail size={20} color="green" />
+							<input
+								placeholder="Seu e-mail"
+								type="email"
+								name="email"
+								value={formData.email}
+								onChange={(e) => handlerInput(e)}
+							/>
+						</div>
+						<div>
+							<input
+								placeholder="Senha"
+								type="password"
+								name="password"
+								value={formData.password}
+								onChange={(e) => handlerInput(e)}
+							/>
+						</div>
+						<Button type="submit">Entrar</Button>
+						<SeparatorLine />
+						<Link to={"signUp"}>
+							Não tem uma conta? <span>Cadastre</span>
+						</Link>
+					</Form>
+				</Box>
+			</Container>
+		</>
 	);
 }

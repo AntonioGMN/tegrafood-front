@@ -6,9 +6,9 @@ const Container = styled.main`
 	justify-content: center;
 	align-items: center;
 	min-height: 100vh;
+	width: 100%;
 
 	@media (max-width: 700px) {
-		width: 100%;
 		justify-content: center;
 		gap: 15px;
 	}

@@ -4,7 +4,7 @@ const Box = styled.div`
 	width: ${(pros) => (pros.width ? "100%" : "380px")};
 	display: flex;
 	flex-direction: column;
-	gap: 12px;
+	gap: 28px;
 
 	@media (max-width: 700px) {
 		width: 100%;

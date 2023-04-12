@@ -8,62 +8,49 @@ export const Form = styled.form`
 	flex-direction: column;
 	justify-content: flex-start;
 	align-items: center;
-	gap: 15px;
-	margin-bottom: 16px;
-	color: #31cc93;
+	gap: 28px;
 
-	background-color: #ffffff;
+	font-size: 12px;
+	font-weight: 700;
+	line-height: 18px;
+	letter-spacing: 0.5px;
+	text-align: center;
 
-	@media (max-width: 700px) {
+	a {
+		color: #9098b1;
+	}
+
+	span {
+		color: #40bfff;
+	}
+
+	div {
+		height: 48px;
 		width: 100%;
+
+		border: 1px solid #ebf0ff;
+		border-radius: 5px;
+
+		display: flex;
+		justify-content: flex-start;
+		align-items: center;
+		padding: 16px;
+		gap: 12px;
 	}
 
 	input {
-		all: unset;
-		box-sizing: border-box;
-
+		border: none;
 		width: 100%;
-		height: ${(pros) => (pros.inputHeight ? pros.inputHeight : "62px")};
 
-		color: #000;
-		font-size: 18px;
-
-		background: #ffffff;
-		padding: 21px;
-		border: 1px solid rgb(48 51 47 / 25%);
-		border-radius: 12px;
-		box-shadow: 0px 4px 24px rgba(120, 177, 89, 0.12);
-
-		::placeholder {
-			color: #9c9c9c;
-			font-family: "Lexend Deca", sans-serif;
+		input:focus {
+			font-weight: normal;
 		}
 	}
 
-	p,
-	a {
+	@media (max-width: 700px) {
+		height: 100%;
 		width: 100%;
-		text-align: start;
-		color: #c0208f;
-		font-size: 15px;
+
+		align-items: start;
 	}
-`;
-
-export const Button = styled.button`
-	all: unset;
-	box-sizing: border-box;
-	border-radius: 12px;
-
-	width: 100%;
-
-	font-style: normal;
-	font-size: 14px;
-	font-weight: 700;
-	line-height: 18px;
-	text-align: center;
-	color: #ffffff;
-
-	padding: 16px;
-	background: #c0208f;
-	border-radius: 12px;
 `;
