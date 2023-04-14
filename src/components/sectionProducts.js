@@ -71,6 +71,7 @@ export const Article = styled.article`
 		background: #dc9000;
 		border-radius: 5px;
 		box-shadow: 0px 4px 4px 0px #00000040;
+		cursor: pointer;
 
 		font-size: 20px;
 		font-weight: 500;

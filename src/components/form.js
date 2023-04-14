@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Form = styled.form`
-	padding: 25px;
+	width: 343px;
 	border-radius: 15px;
 
 	display: flex;
@@ -43,7 +43,8 @@ export const Form = styled.form`
 		border: none;
 		outline: none
 
-		input:focus {
+		&:focus {
+			outline: none;
 			font-weight: normal;
 		}
 	}

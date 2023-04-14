@@ -7,6 +7,7 @@ const GreyText = styled.h2`
 	letter-spacing: 0.5px;
 	text-align: center;
 	color: #9098b1;
+	margin: 13px;
 `;
 
 export default GreyText;

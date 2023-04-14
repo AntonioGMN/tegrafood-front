@@ -2,8 +2,8 @@ import Column from "../../components/column";
 import Container from "../../components/conteiner";
 import BuyProducts from "./buyProducts";
 import FilterOrSortProduts from "./filterOrSortProduts";
-import Header from "./header";
 import Menu from "./nav";
+import Header from "../../components/header";
 
 export default function BuyPage() {
 	return (

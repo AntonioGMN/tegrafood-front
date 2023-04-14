@@ -1,6 +1,5 @@
 import SectionProducts, { Article } from "../../components/sectionProducts";
 import foodPresentation from "../../assets/foodPresentation.png";
-import Button from "../../components/button";
 
 export default function BuyProducts() {
 	return (
