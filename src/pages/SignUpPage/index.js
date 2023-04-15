@@ -53,7 +53,7 @@ export default function SignUpPage() {
 
 			await api.signUp(body);
 			setMessage({ type: "success", text: `${name} foi cadastrado com sucesso` });
-			//navegate("/");
+			navegate("/");
 		} catch (err) {
 			return setMessage({ type: "error", text: err.response.data });
 		}

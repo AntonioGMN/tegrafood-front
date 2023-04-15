@@ -17,7 +17,7 @@ import { useAuth } from "../../contexts/AuthContext";
 export default function LoginPage() {
 	const { setMessage } = useAlert();
 	const navegate = useNavigate();
-	const { token, saveToken } = useAuth();
+	const { token, saveToken, saveUser } = useAuth();
 	const [formData, setFormData] = useState({
 		email: "",
 		password: "",
@@ -33,7 +33,8 @@ export default function LoginPage() {
 		try {
 			const response = await api.login(formData);
 			console.log(response.data);
-			saveToken(response.data);
+			saveToken(response.data.token);
+			saveUser(response.data.user);
 			navegate("/home");
 		} catch (err) {
 			console.log(err);

@@ -5,11 +5,11 @@ export async function signUp(user) {
 }
 
 export async function login(user) {
-	const response = await instance.post("login", user);
-	return response;
+	const r = await instance.post("login", user);
+	console.log(r);
+	return r;
 }
 
 export async function logout() {
-	const response = await instance.delete("logout", headerConfig());
-	return response;
+	return await instance.delete("logout", headerConfig());
 }

@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { HiShoppingCart } from "react-icons/hi";
 import { AiFillBell } from "react-icons/ai";
-import foodPresentation from "../assets/foodPresentation.png";
 import { useState } from "react";
 import { useAuth } from "../contexts/AuthContext";
 
@@ -46,7 +45,8 @@ const HideButton = styled.button`
 
 export default function Header() {
 	const [hide, setHide] = useState(true);
-	const { logout } = useAuth();
+	const { logout, user } = useAuth();
+	const path = process.env.REACT_APP_API_URL + "uploads/" + user.image;
 
 	return (
 		<HeaderStyle>
@@ -56,7 +56,7 @@ export default function Header() {
 				onClick={() => {
 					setHide(!hide);
 				}}
-				src={foodPresentation}
+				src={path}
 				alt="erro"
 			/>
 			<HideButton
