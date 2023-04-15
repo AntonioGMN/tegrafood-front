@@ -1,7 +1,7 @@
 import Container from "../../components/conteiner";
 import { Form } from "../../components/form";
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import H1 from "../../components/h1";
 import Button from "../../components/button";
 import FoodPresentationImg from "../../components/apresentationImage";
@@ -13,7 +13,6 @@ import { BsFileEarmarkPerson } from "react-icons/bs";
 import ArrowReturnButton from "../../components/arrowReturnButton";
 import * as api from "../../service/authApi.js";
 import { useAlert } from "../../contexts/AlertContext";
-import { useEffect } from "react";
 import { useAuth } from "../../contexts/AuthContext";
 
 export default function SignUpPage() {
@@ -25,12 +24,17 @@ export default function SignUpPage() {
 		email: "",
 		password: "",
 		confirmPassword: "",
-		image: "",
+		image: null,
 	});
 
 	useEffect(() => {
 		if (token) navegate("/home");
 	}, [token, navegate]);
+
+	function handleImageChange(e) {
+		const file = e.target.files[0];
+		setFormData({ ...formData, image: file });
+	}
 
 	async function handlerSubmit(e) {
 		e.preventDefault();
@@ -41,9 +45,15 @@ export default function SignUpPage() {
 		const { name, email, password, image } = formData;
 
 		try {
-			await api.signUp({ name, email, password, image });
+			const body = new FormData();
+			body.append("name", name);
+			body.append("email", email);
+			body.append("password", password);
+			body.append("image", image);
+
+			await api.signUp(body);
 			setMessage({ type: "success", text: `${name} foi cadastrado com sucesso` });
-			navegate("/");
+			//navegate("/");
 		} catch (err) {
 			return setMessage({ type: "error", text: err.response.data });
 		}
@@ -55,7 +65,7 @@ export default function SignUpPage() {
 			<Container>
 				<H1>Vamos começar!</H1>
 				<GreyText>Crie uma nova conta</GreyText>
-				<Form onSubmit={(e) => handlerSubmit(e)}>
+				<Form enctype="multipart/form-data" onSubmit={(e) => handlerSubmit(e)}>
 					<div>
 						<FiUser size={30} color="#9098B1" />
 						<input
@@ -81,11 +91,10 @@ export default function SignUpPage() {
 					<div>
 						<BsFileEarmarkPerson size={30} color="#9098B1" />
 						<input
-							placeholder="Endereço de foto de perfil"
-							type="text"
+							placeholder="Foto de perfil"
+							type="file"
 							name="image"
-							value={formData.image}
-							onChange={(e) => handlerInput(e, formData, setFormData)}
+							onChange={(e) => handleImageChange(e)}
 							required
 						/>
 					</div>
