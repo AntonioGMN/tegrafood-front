@@ -5,15 +5,19 @@ import { useState } from "react";
 import { useAuth } from "../contexts/AuthContext";
 
 const HeaderStyle = styled.header`
-	height: 80px;
+	height: 40px;
 	width: 100%;
 	background: #dc9000;
-	margin-bottom: 64px;
 
 	display: flex;
 	justify-content: flex-end;
 	align-items: center;
 	gap: 30px;
+
+	position: fixed;
+	top: 0;
+	right: 0;
+	z-index: 1;
 
 	img {
 		height: 40px;
@@ -41,6 +45,7 @@ const HideButton = styled.button`
 	position: absolute;
 	top: 75px;
 	right: 10px;
+	z-index: 4;
 `;
 
 export default function Header() {

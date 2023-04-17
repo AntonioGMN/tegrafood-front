@@ -49,7 +49,7 @@ export const Form = styled.form`
 		}
 	}
 
-	@media (max-width: 700px) {
+	@media (max-width: 900px) {
 		height: 100%;
 		width: 100%;
 

@@ -6,18 +6,6 @@ const SectionProducts = styled.section`
 	display: flex;
 	flex-direction: column;
 	gap: 9px;
-
-	div {
-		display: flex;
-		flex-direction: column;
-	}
-
-	img {
-		height: 100px;
-		width: 96px;
-		border-radius: 50px;
-		box-shadow: 0px 4px 4px 0px #00000040;
-	}
 `;
 
 export const Article = styled.article`
@@ -27,14 +15,37 @@ export const Article = styled.article`
 	border: 0.25px solid #000000;
 	box-shadow: 3px 3px 8px 1px #0000004d;
 	border-radius: 8px;
+	padding: 0 13px;
 
 	display: flex;
 	align-items: center;
 	justify-content: space-around;
 
+	:last-child {
+		margin-bottom: 20px;
+	}
+
 	div {
 		display: flex;
 		flex-direction: column;
+
+		:first-of-type {
+			flex-grow: 1;
+			margin-left: 20px;
+		}
+	}
+
+	img {
+		height: 100px;
+		width: 96px;
+
+		border-radius: 50px;
+		box-shadow: 0px 0px 0px 0px #00000040;
+		background: node;
+
+		display: flex;
+		align-items: center;
+		justify-content: space-around;
 	}
 
 	p {
@@ -49,7 +60,7 @@ export const Article = styled.article`
 			font-weight: 500;
 			line-height: 29px;
 			letter-spacing: 0.5px;
-			text-align: center;
+			text-align: left;
 			color: #00000080;
 		}
 	}

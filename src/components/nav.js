@@ -2,11 +2,15 @@ import styled from "styled-components";
 
 const NavStyle = styled.nav`
 	width: 254px;
-	height: 100vh;
+	height: 100%;
 	background: #6a0000;
 
 	display: flex;
 	flex-direction: column;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 2;
 
 	img {
 		height: 140px;
@@ -31,6 +35,10 @@ const NavStyle = styled.nav`
 		line-height: 27px;
 		text-align: center;
 		color: #ffffff;
+	}
+
+	@media (max-width: 900px) {
+		display: none;
 	}
 `;
 

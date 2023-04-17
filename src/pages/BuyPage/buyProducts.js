@@ -1,53 +1,28 @@
 import SectionProducts, { Article } from "../../components/sectionProducts";
-import foodPresentation from "../../assets/foodPresentation.png";
 
-export default function BuyProducts() {
+export default function BuyProducts({ products }) {
+	if (products == null) {
+		return <SectionProducts>Carregando</SectionProducts>;
+	}
+
 	return (
 		<SectionProducts>
-			<Article>
-				<img src={foodPresentation} alt="err" />
-				<div>
-					<p>Açaí com frutas </p>
-					<p>(Açaí, banana, morango, uva, leite ninho em pó e leite condensado)</p>
-				</div>
-				<div>
-					<span>R$18,00</span>
-					<button>Comprar</button>
-				</div>
-			</Article>
-			<Article>
-				<img src={foodPresentation} alt="err" />
-				<div>
-					<p>Açaí com frutas </p>
-					<p>(Açaí, banana, morango, uva, leite ninho em pó e leite condensado)</p>
-				</div>
-				<div>
-					<span>R$18,00</span>
-					<button>Comprar</button>
-				</div>
-			</Article>
-			<Article>
-				<img src={foodPresentation} alt="err" />
-				<div>
-					<p>Açaí com frutas </p>
-					<p>(Açaí, banana, morango, uva, leite ninho em pó e leite condensado)</p>
-				</div>
-				<div>
-					<span>R$18,00</span>
-					<button>Comprar</button>
-				</div>
-			</Article>
-			<Article>
-				<img src={foodPresentation} alt="err" />
-				<div>
-					<p>Açaí com frutas </p>
-					<p>(Açaí, banana, morango, uva, leite ninho em pó e leite condensado)</p>
-				</div>
-				<div>
-					<span>R$18,00</span>
-					<button>Comprar</button>
-				</div>
-			</Article>
+			{products.map((product) => {
+				const image = process.env.REACT_APP_API_URL + "uploads/" + product.image;
+				return (
+					<Article key={product.id}>
+						<img src={image} alt="err" />
+						<div>
+							<p>{product.name}</p>
+							<p>({product.description})</p>
+						</div>
+						<div>
+							<span>R${product.price}</span>
+							<button>Comprar</button>
+						</div>
+					</Article>
+				);
+			})}
 		</SectionProducts>
 	);
 }

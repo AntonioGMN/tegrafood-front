@@ -8,7 +8,7 @@ const H1 = styled.h1`
 	text-align: center;
 	color: #223263;
 
-	@media (max-width: 700px) {
+	@media (max-width: 900px) {
 		width: 100%;
 	}
 `;

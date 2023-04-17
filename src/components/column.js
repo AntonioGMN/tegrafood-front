@@ -5,6 +5,8 @@ const Column = styled.div`
 	width: 100%;
 	display: flex;
 	flex-direction: column;
+
+	padding-top: 136px;
 `;
 
 export default Column;
