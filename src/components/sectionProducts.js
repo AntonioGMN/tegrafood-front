@@ -27,6 +27,7 @@ export const Article = styled.article`
 
 	div {
 		display: flex;
+		height: 65px;
 		flex-direction: column;
 
 		:first-of-type {

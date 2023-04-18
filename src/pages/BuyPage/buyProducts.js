@@ -14,7 +14,7 @@ export default function BuyProducts({ products }) {
 						<img src={image} alt="err" />
 						<div>
 							<p>{product.name}</p>
-							<p>({product.description})</p>
+							{product.description !== null ? <p>({product.description})</p> : <p></p>}
 						</div>
 						<div>
 							<span>R${product.price}</span>

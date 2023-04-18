@@ -23,23 +23,25 @@ const NavStyle = styled.nav`
 		flex-direction: column;
 	}
 
-	button {
-		height: 45px;
-		width: 254px;
-		border: 1px solid #ffffff;
-		box-shadow: 0px 2px 4px 0px #00000026;
-
-		background: #6a0000;
-		font-size: 18px;
-		font-weight: 500;
-		line-height: 27px;
-		text-align: center;
-		color: #ffffff;
-	}
-
 	@media (max-width: 900px) {
 		display: none;
 	}
+`;
+
+export const SelectedButton = styled.button`
+	height: 45px;
+	width: 254px;
+	border: 1px solid #ffffff;
+	box-shadow: 0px 2px 4px 0px #00000026;
+	cursor: pointer;
+
+	background: ${(props) => (props.selected ? "#e5a11f" : "#6a0000")};
+
+	font-size: 18px;
+	font-weight: 500;
+	line-height: 27px;
+	text-align: center;
+	color: #ffffff;
 `;
 
 export default NavStyle;

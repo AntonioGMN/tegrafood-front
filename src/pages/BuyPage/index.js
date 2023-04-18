@@ -10,6 +10,7 @@ import * as apiProducts from "../../service/productsApi.js";
 
 export default function BuyPage() {
 	const [products, setProducts] = useState(null);
+	const [filterCategory, setFilterCategory] = useState(null);
 	const [priceFilter, setPriceFilter] = useState({ start: null, end: null });
 	const [filters, setFilters] = useState({
 		alphabetical: false,
@@ -22,27 +23,43 @@ export default function BuyPage() {
 				const { alphabetical, byPrice } = filters;
 				let response;
 
-				if (alphabetical && !byPrice) {
-					response = await apiProducts.getWithAlphabeticalOrde();
-				} else if (byPrice) {
+				if (byPrice) {
 					const { start, end } = priceFilter;
 					if (end === null)
-						response = await apiProducts.getByPriceBiggerThen(start, alphabetical);
-					else response = await apiProducts.getByPrice(start, end, alphabetical);
-				} else {
-					response = await apiProducts.getAll();
-				}
+						response = await apiProducts.getByPriceBiggerThen(
+							start,
+							alphabetical,
+							filterCategory
+						);
+					else
+						response = await apiProducts.getByPrice(
+							start,
+							end,
+							alphabetical,
+							filterCategory
+						);
+				} else if (filterCategory) {
+					response = await apiProducts.getByCategory(filterCategory, alphabetical);
+				} else if (alphabetical) {
+					response = await apiProducts.getWithAlphabeticalOrde();
+				} else response = await apiProducts.getAll();
+
 				setProducts(response.data);
 			} catch (err) {
 				console.log(err);
 			}
 		}
 		getProducts();
-	}, [filters, priceFilter]);
+	}, [filters, priceFilter, filterCategory]);
+
+	console.log(products);
 
 	return (
 		<Div row>
-			<Menu />
+			<Menu
+				filterCategory={filterCategory}
+				setFilterCategory={setFilterCategory}
+			/>
 			<Column>
 				<Header />
 				<Container padding="12px">
