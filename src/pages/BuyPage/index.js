@@ -7,8 +7,12 @@ import Header from "../../components/header";
 import Div from "../../components/div";
 import { useState, useEffect } from "react";
 import * as apiProducts from "../../service/productsApi.js";
+import { useAuth } from "../../contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 export default function BuyPage() {
+	const { token } = useAuth();
+	const navegate = useNavigate();
 	const [products, setProducts] = useState(null);
 	const [showMenu, setShowMenu] = useState(false);
 	const [filterCategory, setFilterCategory] = useState(null);
@@ -19,6 +23,8 @@ export default function BuyPage() {
 	});
 
 	useEffect(() => {
+		// if (!token) navegate("/login");
+
 		async function getProducts() {
 			try {
 				const { alphabetical, byPrice } = filters;
@@ -50,8 +56,8 @@ export default function BuyPage() {
 				console.log(err);
 			}
 		}
-		getProducts();
-	}, [filters, priceFilter, filterCategory]);
+		//getProducts();
+	}, [filters, priceFilter, filterCategory, token, navegate]);
 
 	return (
 		<Div row>
@@ -63,6 +69,7 @@ export default function BuyPage() {
 			/>
 			<Column>
 				<Header showMenu={setShowMenu} />
+				{/* 
 				<Container padding>
 					<FilterOrSortProduts
 						filterCategory={filterCategory}
@@ -72,6 +79,7 @@ export default function BuyPage() {
 					/>
 					<BuyProducts products={products} />
 				</Container>
+			*/}
 			</Column>
 		</Div>
 	);

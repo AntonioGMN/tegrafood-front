@@ -1,8 +1,22 @@
+// import { Link } from "react-router-dom";
+// import BuyProductAlert from "../../components/buyProductAlert";
 import SectionProducts, { Article } from "../../components/sectionProducts";
+import * as api from "../../service/buyApi";
+// import { useState } from "react";
 
 export default function BuyProducts({ products }) {
+	// const [open, setOpen] = useState(false);
 	if (products == null) {
 		return <SectionProducts>Carregando</SectionProducts>;
+	}
+
+	async function buyProduct(productId) {
+		try {
+			await api.addToBuyCar(productId);
+			console.log("adicionado");
+		} catch (err) {
+			console.log(err);
+		}
 	}
 
 	return (
@@ -18,11 +32,15 @@ export default function BuyProducts({ products }) {
 						</div>
 						<div>
 							<span>R${product.price}</span>
-							<button>Comprar</button>
+							<button onClick={() => buyProduct(product.id)}>Comprar</button>
 						</div>
 					</Article>
 				);
 			})}
+			{/* <BuyProductAlert>
+				<p>ítem adicionado ao carrinho</p>
+				<Link to="/">ir para o carrinho</Link>
+			</BuyProductAlert> */}
 		</SectionProducts>
 	);
 }

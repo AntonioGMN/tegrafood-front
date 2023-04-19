@@ -2,13 +2,20 @@ import styled from "styled-components";
 
 const SectionProducts = styled.section`
 	width: 100%;
+	max-height: ${(props) => (props.maxHeight ? props.maxHeight : "none")};
 	display: flex;
 	flex-direction: column;
-	gap: 9px;
+	gap: 10px;
 	flex: 1;
 
+	section {
+		display: flex;
+		align-items: center;
+		gap: 12px;
+	}
+
 	/* border: 1px solid red; */
-	padding-bottom: 80px;
+	padding-bottom:  ${(props) => (props.maxHeight ? "none" : "80px")}
 
 	overflow-y: scroll;
 	::-webkit-scrollbar {
@@ -22,7 +29,7 @@ const SectionProducts = styled.section`
 
 export const Article = styled.article`
 	min-height: 128px;
-	width: 100%;
+	width: ${(props) => (props.width ? props.width : "100%")};
 
 	border: 0.25px solid #000000;
 	box-shadow: 3px 3px 8px 1px #0000004d;
@@ -39,7 +46,6 @@ export const Article = styled.article`
 
 	div {
 		display: flex;
-		height: 65px;
 		flex-direction: column;
 
 		:first-of-type {
@@ -89,7 +95,7 @@ export const Article = styled.article`
 
 	button {
 		all: unset;
-		height: 50px;
+		min-height: 50px;
 		width: 140px;
 		margin-top: 6px;
 		background: #dc9000;

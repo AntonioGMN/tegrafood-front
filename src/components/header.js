@@ -66,7 +66,10 @@ const HideButton = styled.button`
 export default function Header({ showMenu }) {
 	const [hide, setHide] = useState(true);
 	const { logout, user } = useAuth();
-	const path = process.env.REACT_APP_API_URL + "uploads/" + user.image;
+	let path;
+	if (user !== null) {
+		path = process.env.REACT_APP_API_URL + "uploads/" + user.image;
+	}
 
 	console.log(hide);
 
