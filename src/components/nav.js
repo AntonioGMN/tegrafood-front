@@ -1,4 +1,13 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
+
+const slideRightAnimation = keyframes`
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+`;
 
 const NavStyle = styled.nav`
 	width: 254px;
@@ -7,10 +16,6 @@ const NavStyle = styled.nav`
 
 	display: flex;
 	flex-direction: column;
-	position: fixed;
-	top: 0;
-	left: 0;
-	z-index: 2;
 
 	img {
 		height: 140px;
@@ -24,7 +29,12 @@ const NavStyle = styled.nav`
 	}
 
 	@media (max-width: 900px) {
-		display: none;
+		display: ${(props) => (props.show === true ? "flex" : "none")};
+		animation: ${slideRightAnimation} 1s ease-in-out;
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: 1;
 	}
 `;
 

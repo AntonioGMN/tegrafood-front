@@ -3,9 +3,10 @@ import styled from "styled-components";
 const Div = styled.div`
 	height: 100%;
 	width: 100%;
-	padding-left: 254px;
+	//padding-left: 254px;
 	display: flex;
 	flex-direction: ${(props) => (props.row ? "row" : "column")};
+	overflow: hidden;
 
 	@media (max-width: 900px) {
 		padding-left: 0px;

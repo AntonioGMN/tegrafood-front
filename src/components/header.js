@@ -3,21 +3,28 @@ import { HiShoppingCart } from "react-icons/hi";
 import { AiFillBell } from "react-icons/ai";
 import { useState } from "react";
 import { useAuth } from "../contexts/AuthContext";
+import { BiMenu } from "react-icons/bi";
 
 const HeaderStyle = styled.header`
-	height: 40px;
+	min-height: 80px;
 	width: 100%;
 	background: #dc9000;
+	padding: 0 12px;
 
 	display: flex;
-	justify-content: flex-end;
+	justify-content: space-between;
 	align-items: center;
+	justify-content: flex-end;
 	gap: 30px;
 
-	position: fixed;
-	top: 0;
-	right: 0;
-	z-index: 1;
+	div {
+		display: flex;
+		gap: 30px;
+
+		:first-of-type {
+			display: none;
+		}
+	}
 
 	img {
 		height: 40px;
@@ -25,6 +32,14 @@ const HeaderStyle = styled.header`
 		border-radius: 50px;
 		margin-right: 12px;
 		cursor: pointer;
+	}
+
+	@media (max-width: 900px) {
+		justify-content: space-between;
+
+		div:first-child {
+			display: block;
+		}
 	}
 `;
 
@@ -43,35 +58,48 @@ const HideButton = styled.button`
 	color: white;
 
 	position: absolute;
-	top: 75px;
+	top: 85px;
 	right: 10px;
 	z-index: 4;
 `;
 
-export default function Header() {
+export default function Header({ showMenu }) {
 	const [hide, setHide] = useState(true);
 	const { logout, user } = useAuth();
 	const path = process.env.REACT_APP_API_URL + "uploads/" + user.image;
 
+	console.log(hide);
+
 	return (
 		<HeaderStyle>
-			<HiShoppingCart size={40} color="white" />
-			<AiFillBell size={40} color="white" />
-			<img
-				onClick={() => {
-					setHide(!hide);
-				}}
-				src={path}
-				alt="erro"
-			/>
-			<HideButton
-				onClick={() => {
-					logout();
-				}}
-				hide={hide}
-			>
-				Logout
-			</HideButton>
+			<div>
+				<BiMenu
+					size={40}
+					color="white"
+					onClick={() => {
+						showMenu(true);
+					}}
+				/>
+			</div>
+			<div>
+				<HiShoppingCart size={40} color="white" />
+				<AiFillBell size={40} color="white" />
+				<img
+					onClick={() => {
+						setHide(!hide);
+					}}
+					src={path}
+					alt="erro"
+				/>
+				<HideButton
+					onClick={() => {
+						logout();
+					}}
+					hide={hide}
+				>
+					Logout
+				</HideButton>
+			</div>
 		</HeaderStyle>
 	);
 }

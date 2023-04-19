@@ -62,7 +62,7 @@ export default function SignUpPage() {
 	return (
 		<>
 			<FoodPresentationImg />
-			<Container>
+			<Container center>
 				<H1>Vamos começar!</H1>
 				<GreyText>Crie uma nova conta</GreyText>
 				<Form enctype="multipart/form-data" onSubmit={(e) => handlerSubmit(e)}>

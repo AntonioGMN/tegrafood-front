@@ -24,8 +24,11 @@ const BoxPriceFilter = styled.section`
 
 	p {
 		width: 100%;
-		font-size: 16px;
 		color: #000000;
+		font-size: 16px;
+		font-weight: 500;
+		line-height: 24px;
+		letter-spacing: 0.5px;
 		text-align: center;
 	}
 

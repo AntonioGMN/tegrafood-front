@@ -2,14 +2,26 @@ import styled from "styled-components";
 
 const SectionProducts = styled.section`
 	width: 100%;
-	height: 100%;
 	display: flex;
 	flex-direction: column;
 	gap: 9px;
+	flex: 1;
+
+	/* border: 1px solid red; */
+	padding-bottom: 80px;
+
+	overflow-y: scroll;
+	::-webkit-scrollbar {
+		width: 6px;
+		background-color: #f5f5f5;
+	}
+	::-webkit-scrollbar-thumb {
+		background-color: #ccc;
+	}
 `;
 
 export const Article = styled.article`
-	height: 128px;
+	min-height: 128px;
 	width: 100%;
 
 	border: 0.25px solid #000000;

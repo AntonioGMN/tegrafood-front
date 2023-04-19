@@ -45,7 +45,7 @@ export default function LoginPage() {
 	return (
 		<>
 			<FoodPresentationImg />
-			<Container>
+			<Container center>
 				<Box>
 					<H1>Bem vindo!</H1>
 					<GreyText>faça o login para continuar</GreyText>

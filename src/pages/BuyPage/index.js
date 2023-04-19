@@ -10,6 +10,7 @@ import * as apiProducts from "../../service/productsApi.js";
 
 export default function BuyPage() {
 	const [products, setProducts] = useState(null);
+	const [showMenu, setShowMenu] = useState(false);
 	const [filterCategory, setFilterCategory] = useState(null);
 	const [priceFilter, setPriceFilter] = useState({ start: null, end: null });
 	const [filters, setFilters] = useState({
@@ -52,18 +53,19 @@ export default function BuyPage() {
 		getProducts();
 	}, [filters, priceFilter, filterCategory]);
 
-	console.log(products);
-
 	return (
 		<Div row>
 			<Menu
+				showMenu={showMenu}
+				setShowMenu={setShowMenu}
 				filterCategory={filterCategory}
 				setFilterCategory={setFilterCategory}
 			/>
 			<Column>
-				<Header />
-				<Container padding="12px">
+				<Header showMenu={setShowMenu} />
+				<Container padding>
 					<FilterOrSortProduts
+						filterCategory={filterCategory}
 						filters={filters}
 						setFilters={setFilters}
 						setPriceFilter={setPriceFilter}
