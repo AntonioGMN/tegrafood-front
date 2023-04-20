@@ -4,10 +4,10 @@ const Container = styled.main`
 	display: flex;
 	flex-direction: column;
 	align-items: ${(props) => (props.center === true ? "center" : "start")};
-	justify-content: ${(props) =>
-		props.center === true ? "center" : "space-evenly"};
+	justify-content: ${(props) => (props.justify ? props.justify : "center")};
 	height: 100vh;
 	width: 100%;
+	overflow: hidden;
 
 	padding: ${(props) => (props.padding !== null ? "0 12px" : "none")};
 

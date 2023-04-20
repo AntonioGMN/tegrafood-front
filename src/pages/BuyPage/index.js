@@ -9,6 +9,7 @@ import { useState, useEffect } from "react";
 import * as apiProducts from "../../service/productsApi.js";
 import { useAuth } from "../../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
+import AlertProducts from "./alertProducts";
 
 export default function BuyPage() {
 	const { token } = useAuth();
@@ -17,6 +18,7 @@ export default function BuyPage() {
 	const [showMenu, setShowMenu] = useState(false);
 	const [filterCategory, setFilterCategory] = useState(null);
 	const [priceFilter, setPriceFilter] = useState({ start: null, end: null });
+	const [showAlert, setShowAlert] = useState(false);
 	const [filters, setFilters] = useState({
 		alphabetical: false,
 		byPrice: false,
@@ -56,8 +58,10 @@ export default function BuyPage() {
 				console.log(err);
 			}
 		}
-		//getProducts();
+		getProducts();
 	}, [filters, priceFilter, filterCategory, token, navegate]);
+
+	console.log(showAlert);
 
 	return (
 		<Div row>
@@ -69,17 +73,22 @@ export default function BuyPage() {
 			/>
 			<Column>
 				<Header showMenu={setShowMenu} />
-				{/* 
-				<Container padding>
+				<Container padding justify="start">
 					<FilterOrSortProduts
-						filterCategory={filterCategory}
 						filters={filters}
 						setFilters={setFilters}
 						setPriceFilter={setPriceFilter}
+						filterCategory={filterCategory}
+						setShowAlert={setShowAlert}
 					/>
-					<BuyProducts products={products} />
+					<BuyProducts products={products} setShowAlert={setShowAlert} />
+					<AlertProducts
+						showAlert={showAlert}
+						setShowAlert={setShowAlert}
+						filters={filters}
+						setFilters={setFilters}
+					/>
 				</Container>
-			*/}
 			</Column>
 		</Div>
 	);

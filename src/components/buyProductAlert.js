@@ -2,25 +2,30 @@ import styled, { keyframes } from "styled-components";
 
 const slideUpAnimation = keyframes`
   from {
-    transform: translateY(0);
+    transform: translateY(100%);
   }
   to {
-    transform: translateY(-100%);
+    transform: translateY(0);
   }
 `;
 
 const BuyProductAlert = styled.div`
-	max-height: 66px;
-	max-width: 573px;
+	height: 66px;
+	width: 573px;
 
-	display: flex;
+	display: ${(props) => (props.show ? "flex" : "none")};
+	justify-content: space-around;
+	align-items: center;
+
 	background: #223263;
-	position: fixed;
-	bottom: 0px;
-	left: 25%;
+	position: absolute;
+  bottom: 10px;
+  left: 0;
+  right: 0;
+  margin: auto;	
 	z-index: 1; */
-	margin: auto;
-	animation: ${slideUpAnimation} 1s ease-in-out;
+	margin-bottom: 25px;
+	animation: ${slideUpAnimation} 0.5s ease-in-out;
 
 	p {
 		font-size: 16px;
@@ -31,7 +36,7 @@ const BuyProductAlert = styled.div`
 		color: #ffffff;
 	}
 
-	a {
+	a, span {
 		color: #e5a11f;
 	}
 `;

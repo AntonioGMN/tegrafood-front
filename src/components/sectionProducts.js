@@ -15,9 +15,9 @@ const SectionProducts = styled.section`
 	}
 
 	/* border: 1px solid red; */
-	padding-bottom:  ${(props) => (props.maxHeight ? "none" : "80px")}
+	padding-bottom: ${(props) => (props.maxHeight ? "none" : "10px")};
 
-	overflow-y: scroll;
+	overflow-y: auto;
 	::-webkit-scrollbar {
 		width: 6px;
 		background-color: #f5f5f5;

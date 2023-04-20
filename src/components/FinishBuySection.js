@@ -13,6 +13,7 @@ const FinishBuysection = styled.section`
 		line-height: 30px;
 		letter-spacing: 0.5px;
 		color: #223263;
+		text-decoration: underline;
 	}
 
 	@media (max-width: 900px) {

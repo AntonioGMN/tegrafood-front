@@ -28,7 +28,7 @@ export default function SignUpPage() {
 	});
 
 	useEffect(() => {
-		if (token) navegate("/home");
+		if (token) navegate("/");
 	}, [token, navegate]);
 
 	function handleImageChange(e) {
@@ -53,7 +53,7 @@ export default function SignUpPage() {
 
 			await api.signUp(body);
 			setMessage({ type: "success", text: `${name} foi cadastrado com sucesso` });
-			navegate("/");
+			navegate("/login");
 		} catch (err) {
 			return setMessage({ type: "error", text: err.response.data });
 		}
@@ -122,7 +122,7 @@ export default function SignUpPage() {
 					</div>
 
 					<Button type="submit">Cadastre-se</Button>
-					<Link to={"/"}>
+					<Link to={"/login"}>
 						Já tem uma conta? <span>Entrar</span>
 					</Link>
 				</Form>

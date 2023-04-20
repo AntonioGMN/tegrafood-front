@@ -8,3 +8,7 @@ export async function addToBuyCar(productId) {
 		headerConfig()
 	);
 }
+
+export async function get() {
+	return await instance.get("/shopping/user", headerConfig());
+}

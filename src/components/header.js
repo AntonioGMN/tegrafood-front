@@ -4,6 +4,7 @@ import { AiFillBell } from "react-icons/ai";
 import { useState } from "react";
 import { useAuth } from "../contexts/AuthContext";
 import { BiMenu } from "react-icons/bi";
+import { useNavigate } from "react-router-dom";
 
 const HeaderStyle = styled.header`
 	min-height: 80px;
@@ -63,15 +64,14 @@ const HideButton = styled.button`
 	z-index: 4;
 `;
 
-export default function Header({ showMenu }) {
+export default function Header({ showMenu, setAlertType }) {
+	const navegate = useNavigate();
 	const [hide, setHide] = useState(true);
 	const { logout, user } = useAuth();
 	let path;
 	if (user !== null) {
 		path = process.env.REACT_APP_API_URL + "uploads/" + user.image;
 	}
-
-	console.log(hide);
 
 	return (
 		<HeaderStyle>
@@ -85,7 +85,11 @@ export default function Header({ showMenu }) {
 				/>
 			</div>
 			<div>
-				<HiShoppingCart size={40} color="white" />
+				<HiShoppingCart
+					size={40}
+					color="white"
+					onClick={() => navegate("carrinho")}
+				/>
 				<AiFillBell size={40} color="white" />
 				<img
 					onClick={() => {

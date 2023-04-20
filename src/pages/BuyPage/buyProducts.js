@@ -1,11 +1,7 @@
-// import { Link } from "react-router-dom";
-// import BuyProductAlert from "../../components/buyProductAlert";
 import SectionProducts, { Article } from "../../components/sectionProducts";
 import * as api from "../../service/buyApi";
-// import { useState } from "react";
 
-export default function BuyProducts({ products }) {
-	// const [open, setOpen] = useState(false);
+export default function BuyProducts({ products, setShowAlert }) {
 	if (products == null) {
 		return <SectionProducts>Carregando</SectionProducts>;
 	}
@@ -31,16 +27,19 @@ export default function BuyProducts({ products }) {
 							{product.description !== null ? <p>({product.description})</p> : <p></p>}
 						</div>
 						<div>
-							<span>R${product.price}</span>
-							<button onClick={() => buyProduct(product.id)}>Comprar</button>
+							<span>R${product.price.toString().replace(".", ",")}</span>
+							<button
+								onClick={() => {
+									setShowAlert(true);
+									buyProduct(product.id);
+								}}
+							>
+								Comprar
+							</button>
 						</div>
 					</Article>
 				);
 			})}
-			{/* <BuyProductAlert>
-				<p>ítem adicionado ao carrinho</p>
-				<Link to="/">ir para o carrinho</Link>
-			</BuyProductAlert> */}
 		</SectionProducts>
 	);
 }

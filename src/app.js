@@ -12,7 +12,7 @@ export default function App() {
 			<AlertProvide>
 				<AuthProvider>
 					<Routes>
-						<Route path="/" element={<LoginPage />} />
+						<Route path="/login" element={<LoginPage />} />
 						<Route path="/cadastro" element={<SignUpPage />} />
 						<Route path="/" element={<BuyPage />} />
 						<Route path="/carrinho" element={<FinishShoppingPage />} />

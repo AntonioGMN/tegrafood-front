@@ -42,6 +42,7 @@ export default function FilterOrSortProduts({
 	setFilters,
 	setPriceFilter,
 	filterCategory,
+	setShowAlert,
 }) {
 	const [hide, setHide] = useState(true);
 	const [productCategory, setProductCategory] = useState("Todos");
@@ -108,9 +109,10 @@ export default function FilterOrSortProduts({
 				<MdSortByAlpha
 					size={35}
 					color={filters.alphabetical ? "#DC9000" : "#C8C8C8"}
-					onClick={() =>
-						setFilters({ ...filters, alphabetical: !filters.alphabetical })
-					}
+					onClick={() => {
+						if (!filters.alphabetical) setShowAlert("ativeAlphabeticalOrder");
+						setFilters({ ...filters, alphabetical: !filters.alphabetical });
+					}}
 				/>
 			</div>
 		</Section>

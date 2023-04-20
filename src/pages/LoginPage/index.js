@@ -24,7 +24,7 @@ export default function LoginPage() {
 	});
 
 	useEffect(() => {
-		if (token) navegate("/home");
+		if (token) navegate("/");
 	}, [token, navegate]);
 
 	async function handlerSubmit(e) {
@@ -35,7 +35,7 @@ export default function LoginPage() {
 			console.log(response.data);
 			saveToken(response.data.token);
 			saveUser(response.data.user);
-			navegate("/home");
+			navegate("/");
 		} catch (err) {
 			console.log(err);
 			return setMessage({ type: "error", text: err.response.data });
@@ -72,7 +72,7 @@ export default function LoginPage() {
 						</div>
 						<Button type="submit">Entrar</Button>
 						<SeparatorLine />
-						<Link to={"signUp"}>
+						<Link to={"/cadastro"}>
 							Não tem uma conta? <span>Cadastre</span>
 						</Link>
 					</Form>
