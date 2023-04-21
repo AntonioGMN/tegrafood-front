@@ -25,7 +25,7 @@ export default function BuyPage() {
 	});
 
 	useEffect(() => {
-		// if (!token) navegate("/login");
+		if (!token) navegate("/login");
 
 		async function getProducts() {
 			try {

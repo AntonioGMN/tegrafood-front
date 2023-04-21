@@ -9,15 +9,18 @@ import BaseButton from "../../components/baseButton";
 import Table from "../../components/table";
 import AddCupom from "../../components/addCupom";
 import FinishBuysection from "../../components/FinishBuySection";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import * as api from "../../service/buyApi";
+import { useAuth } from "../../contexts/AuthContext";
 
 export default function FinishShoppingPage() {
+	const { token } = useAuth();
+	const navegate = useNavigate();
 	const [products, setProducts] = useState(null);
 
 	useEffect(() => {
-		// if (!token) navegate("/login");
+		if (!token) navegate("/login");
 
 		async function getProducts() {
 			try {
@@ -29,7 +32,7 @@ export default function FinishShoppingPage() {
 			}
 		}
 		getProducts();
-	}, []);
+	}, [token, navegate]);
 
 	function calcTotalPrice(array) {
 		let total = array.reduce((sum, product) => {

@@ -88,7 +88,7 @@ export default function Header({ showMenu, setAlertType }) {
 				<HiShoppingCart
 					size={40}
 					color="white"
-					onClick={() => navegate("carrinho")}
+					onClick={() => navegate("/carrinho")}
 				/>
 				<AiFillBell size={40} color="white" />
 				<img
