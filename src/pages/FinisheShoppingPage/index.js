@@ -1,9 +1,7 @@
 import Column from "../../components/column";
 import Container from "../../components/conteiner";
 import Header from "../../components/header";
-import SectionProducts, { Article } from "../../components/sectionProducts";
 import Title from "../../components/title";
-import { FaTrash } from "react-icons/fa";
 import Div from "../../components/div";
 import BaseButton from "../../components/baseButton";
 import Table from "../../components/table";
@@ -13,66 +11,44 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import * as api from "../../service/buyApi";
 import { useAuth } from "../../contexts/AuthContext";
+import { useAlert } from "../../contexts/AlertContext";
+import ShowShoppings from "./showShopping";
 
 export default function FinishShoppingPage() {
 	const { token } = useAuth();
+	const { setMessage } = useAlert();
 	const navegate = useNavigate();
-	const [products, setProducts] = useState(null);
+	const [products, setProducts] = useState([]);
+	const [price, setPrice] = useState(0);
 
 	useEffect(() => {
 		if (!token) navegate("/login");
-
-		async function getProducts() {
-			try {
-				const response = await api.get();
-				console.log(response);
-				setProducts(response.data);
-			} catch (err) {
-				console.log(err);
-			}
-		}
-		getProducts();
 	}, [token, navegate]);
 
-	function calcTotalPrice(array) {
-		let total = array.reduce((sum, product) => {
-			return sum + parseFloat(product.price);
-		}, 0);
-		return total.toLocaleString("pt-BR", { minimumFractionDigits: 2 });
+	async function saveQuantity() {
+		await products.map(async (p) => {
+			if ("updated" in p) await api.updateQuantity(p.quantity, p.shopping_id);
+		});
 	}
 
-	if (products === null) return "carregando";
+	async function finishShopping() {
+		await products.map(async (p) => {
+			await api.finishShopping(p.shopping_id);
+		});
+		navegate("/");
+		setMessage({ type: "success", text: `Compras realizadas com sucesso` });
+	}
 
 	return (
 		<Column>
 			<Header />
 			<Container justify="space-evenly">
 				<Title>Meu carrinho</Title>
-				<SectionProducts maxHeight="440px">
-					{products.map((product) => {
-						const image = process.env.REACT_APP_API_URL + "uploads/" + product.image;
-						return (
-							<section key={product.id}>
-								<Article width="95%">
-									<img src={image} alt="err" />
-									<div>
-										<p>{product.name}</p>
-										{product.description !== null ? (
-											<p>({product.description})</p>
-										) : (
-											<p></p>
-										)}
-									</div>
-									<div>
-										<span>R${product.price}</span>
-										<button>Comprar</button>
-									</div>
-								</Article>
-								<FaTrash size={30} color="#223263" />
-							</section>
-						);
-					})}
-				</SectionProducts>
+				<ShowShoppings
+					products={products}
+					setProducts={setProducts}
+					setPrice={setPrice}
+				/>
 				<Div gap row height="128px" width="95%">
 					<AddCupom row>
 						<p>Cupom de desconto</p>
@@ -82,7 +58,7 @@ export default function FinishShoppingPage() {
 						<thead>
 							<tr>
 								<th>SubTotal</th>
-								<td>R$ {calcTotalPrice(products)}</td>
+								<td>R$ {price}</td>
 							</tr>
 						</thead>
 						<tbody>
@@ -94,8 +70,22 @@ export default function FinishShoppingPage() {
 					</Table>
 				</Div>
 				<FinishBuysection>
-					<Link to="/">Escolher mais</Link>
-					<BaseButton width="190px">Fechar pedido</BaseButton>
+					<Link
+						to="/"
+						onClick={async () => {
+							await saveQuantity();
+						}}
+					>
+						Escolher mais
+					</Link>
+					<BaseButton
+						width="190px"
+						onClick={async () => {
+							await finishShopping();
+						}}
+					>
+						Fechar pedido
+					</BaseButton>
 				</FinishBuysection>
 			</Container>
 		</Column>

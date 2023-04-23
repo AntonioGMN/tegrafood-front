@@ -1,7 +1,11 @@
 import { instance, headerConfig } from ".";
 
 export async function signUp(user) {
-	return await instance.post("/signUp", user);
+	try {
+		return await instance.post("/signUp", user);
+	} catch (err) {
+		console.log(err);
+	}
 }
 
 export async function login(user) {

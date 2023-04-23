@@ -1,6 +1,6 @@
 import Column from "../../components/column";
 import Container from "../../components/conteiner";
-import BuyProducts from "./buyProducts";
+import ShowProducts from "./showProducts";
 import FilterOrSortProduts from "./filterOrSortProduts";
 import Menu from "./menu";
 import Header from "../../components/header";
@@ -11,7 +11,7 @@ import { useAuth } from "../../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 import AlertProducts from "./alertProducts";
 
-export default function BuyPage() {
+export default function ShowProductsPage() {
 	const { token } = useAuth();
 	const navegate = useNavigate();
 	const [products, setProducts] = useState(null);
@@ -64,7 +64,7 @@ export default function BuyPage() {
 	console.log(showAlert);
 
 	return (
-		<Div row>
+		<Div row width="100%" height="100%">
 			<Menu
 				showMenu={showMenu}
 				setShowMenu={setShowMenu}
@@ -81,7 +81,11 @@ export default function BuyPage() {
 						filterCategory={filterCategory}
 						setShowAlert={setShowAlert}
 					/>
-					<BuyProducts products={products} setShowAlert={setShowAlert} />
+					<ShowProducts
+						products={products}
+						setProducts={setProducts}
+						setShowAlert={setShowAlert}
+					/>
 					<AlertProducts
 						showAlert={showAlert}
 						setShowAlert={setShowAlert}

@@ -20,6 +20,7 @@ instance.interceptors.response.use(
 		return response;
 	},
 	async (err) => {
+		console.log(err);
 		const newReponse = async (resolve, reject) => {
 			const originalReq = err.config;
 			const retry = originalReq._retry;
@@ -29,7 +30,6 @@ instance.interceptors.response.use(
 					const oldToken = localStorage.getItem("token").replace(/"/g, "");
 					const res = await instance.put(`/user/refresh`, { oldToken });
 					const newToken = res.data;
-					console.log("bare ", `Bearer ${newToken}`);
 					localStorage.setItem("token", JSON.stringify(newToken));
 					originalReq.headers["Authorization"] = `Bearer ${newToken}`;
 					const newResponse = await axios(originalReq);

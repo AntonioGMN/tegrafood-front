@@ -1,7 +1,9 @@
+import BaseButton from "../../components/baseButton";
+import Div from "../../components/div";
 import SectionProducts, { Article } from "../../components/sectionProducts";
 import * as api from "../../service/buyApi";
 
-export default function BuyProducts({ products, setShowAlert }) {
+export default function ShowProducts({ products, setProducts, setShowAlert }) {
 	if (products == null) {
 		return <SectionProducts>Carregando</SectionProducts>;
 	}
@@ -9,7 +11,9 @@ export default function BuyProducts({ products, setShowAlert }) {
 	async function buyProduct(productId) {
 		try {
 			await api.addToBuyCar(productId);
-			console.log("adicionado");
+			const index = products.findIndex((p) => p.id === productId);
+			products[index].sold = true;
+			setProducts(products);
 		} catch (err) {
 			console.log(err);
 		}
@@ -22,21 +26,25 @@ export default function BuyProducts({ products, setShowAlert }) {
 				return (
 					<Article key={product.id}>
 						<img src={image} alt="err" />
-						<div>
+						<Div glow>
 							<p>{product.name}</p>
 							{product.description !== null ? <p>({product.description})</p> : <p></p>}
-						</div>
-						<div>
+						</Div>
+						<Div>
 							<span>R${product.price.toString().replace(".", ",")}</span>
-							<button
-								onClick={() => {
-									setShowAlert(true);
-									buyProduct(product.id);
-								}}
-							>
-								Comprar
-							</button>
-						</div>
+							{"sold" in product ? (
+								<BaseButton>Cancelar compra</BaseButton>
+							) : (
+								<BaseButton
+									onClick={() => {
+										setShowAlert(true);
+										buyProduct(product.id);
+									}}
+								>
+									Comprar
+								</BaseButton>
+							)}
+						</Div>
 					</Article>
 				);
 			})}

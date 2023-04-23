@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import BuyPage from "./pages/BuyPage";
+import ShowProductsPage from "./pages/ShowProductsPage";
 import LoginPage from "./pages/LoginPage";
 import SignUpPage from "./pages/SignUpPage";
 import AlertProvide from "./contexts/AlertContext.js";
@@ -14,7 +14,7 @@ export default function App() {
 					<Routes>
 						<Route path="/login" element={<LoginPage />} />
 						<Route path="/cadastro" element={<SignUpPage />} />
-						<Route path="/" element={<BuyPage />} />
+						<Route path="/" element={<ShowProductsPage />} />
 						<Route path="/carrinho" element={<FinishShoppingPage />} />
 					</Routes>
 				</AuthProvider>

@@ -44,19 +44,10 @@ export const Article = styled.article`
 		margin-bottom: 20px;
 	}
 
-	div {
-		display: flex;
-		flex-direction: column;
-
-		:first-of-type {
-			flex-grow: 1;
-			margin-left: 20px;
-		}
-	}
-
 	img {
 		height: 100px;
 		width: 96px;
+		margin-right: 20px;
 
 		border-radius: 50px;
 		box-shadow: 0px 0px 0px 0px #00000040;
@@ -91,24 +82,6 @@ export const Article = styled.article`
 		letter-spacing: 0.5px;
 		text-align: center;
 		color: #223263;
-	}
-
-	button {
-		all: unset;
-		min-height: 50px;
-		width: 140px;
-		margin-top: 6px;
-		background: #dc9000;
-		border-radius: 5px;
-		box-shadow: 0px 4px 4px 0px #00000040;
-		cursor: pointer;
-
-		font-size: 20px;
-		font-weight: 500;
-		line-height: 30px;
-		letter-spacing: 0.5px;
-		text-align: center;
-		color: white;
 	}
 `;
 
