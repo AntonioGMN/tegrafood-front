@@ -15,10 +15,13 @@ export default function ShowProductsPage() {
 	const { token } = useAuth();
 	const navegate = useNavigate();
 	const [products, setProducts] = useState(null);
+
 	const [showMenu, setShowMenu] = useState(false);
-	const [filterCategory, setFilterCategory] = useState(null);
-	const [priceFilter, setPriceFilter] = useState({ start: null, end: null });
 	const [showAlert, setShowAlert] = useState(false);
+	const [getProductsAgain, setGetProductsAgain] = useState(false);
+
+	const [filterCategory, setFilterCategory] = useState(null);
+	const [priceFilter, setPriceFilter] = useState({ start: false, end: false });
 	const [filters, setFilters] = useState({
 		alphabetical: false,
 		byPrice: false,
@@ -30,38 +33,29 @@ export default function ShowProductsPage() {
 		async function getProducts() {
 			try {
 				const { alphabetical, byPrice } = filters;
+				const { start, end } = priceFilter;
 				let response;
 
-				if (byPrice) {
-					const { start, end } = priceFilter;
-					if (end === null)
-						response = await apiProducts.getByPriceBiggerThen(
-							start,
-							alphabetical,
-							filterCategory
-						);
-					else
-						response = await apiProducts.getByPrice(
-							start,
-							end,
-							alphabetical,
-							filterCategory
-						);
-				} else if (filterCategory) {
-					response = await apiProducts.getByCategory(filterCategory, alphabetical);
-				} else if (alphabetical) {
-					response = await apiProducts.getWithAlphabeticalOrde();
+				if (alphabetical || byPrice || filterCategory) {
+					console.log("com filtro");
+					response = await apiProducts.getWithFilter(
+						filterCategory,
+						alphabetical,
+						start,
+						end
+					);
 				} else response = await apiProducts.getAll();
 
 				setProducts(response.data);
+				setGetProductsAgain(false);
 			} catch (err) {
 				console.log(err);
 			}
 		}
 		getProducts();
-	}, [filters, priceFilter, filterCategory, token, navegate]);
+	}, [filters, priceFilter, filterCategory, token, navegate, getProductsAgain]);
 
-	console.log(showAlert);
+	console.log(products);
 
 	return (
 		<Div row width="100%" height="100%">
@@ -85,6 +79,7 @@ export default function ShowProductsPage() {
 						products={products}
 						setProducts={setProducts}
 						setShowAlert={setShowAlert}
+						setGetProducts={setGetProductsAgain}
 					/>
 					<AlertProducts
 						showAlert={showAlert}

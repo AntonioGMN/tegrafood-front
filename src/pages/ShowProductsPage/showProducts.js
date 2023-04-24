@@ -1,22 +1,16 @@
 import BaseButton from "../../components/baseButton";
 import Div from "../../components/div";
 import SectionProducts, { Article } from "../../components/sectionProducts";
+import { useAuth } from "../../contexts/AuthContext";
 import * as api from "../../service/buyApi";
 
-export default function ShowProducts({ products, setProducts, setShowAlert }) {
+export default function ShowProducts({
+	products,
+	setShowAlert,
+	setGetProducts,
+}) {
 	if (products == null) {
 		return <SectionProducts>Carregando</SectionProducts>;
-	}
-
-	async function buyProduct(productId) {
-		try {
-			await api.addToBuyCar(productId);
-			const index = products.findIndex((p) => p.id === productId);
-			products[index].sold = true;
-			setProducts(products);
-		} catch (err) {
-			console.log(err);
-		}
 	}
 
 	return (
@@ -32,22 +26,61 @@ export default function ShowProducts({ products, setProducts, setShowAlert }) {
 						</Div>
 						<Div>
 							<span>R${product.price.toString().replace(".", ",")}</span>
-							{"sold" in product ? (
-								<BaseButton>Cancelar compra</BaseButton>
-							) : (
-								<BaseButton
-									onClick={() => {
-										setShowAlert(true);
-										buyProduct(product.id);
-									}}
-								>
-									Comprar
-								</BaseButton>
-							)}
+							<TypeButton
+								product={product}
+								setShowAlert={setShowAlert}
+								setGetProducts={setGetProducts}
+							/>
 						</Div>
 					</Article>
 				);
 			})}
 		</SectionProducts>
+	);
+}
+
+function TypeButton({ product, setShowAlert, setGetProducts }) {
+	const { user } = useAuth();
+	if (user.is_adm) return <BaseButton>Editar</BaseButton>;
+
+	async function buyProduct(productId) {
+		try {
+			await api.addToBuyCar(productId);
+			setGetProducts(true);
+		} catch (err) {
+			console.log(err);
+		}
+	}
+
+	async function cancelShopping(shoppingId) {
+		try {
+			await api.deleteById(shoppingId);
+			setGetProducts(true);
+		} catch (err) {
+			console.log(err);
+		}
+	}
+
+	if (product.shopping_id)
+		return (
+			<BaseButton
+				shopping
+				onClick={() => {
+					cancelShopping(product.shopping_id);
+				}}
+			>
+				Cancelar compra
+			</BaseButton>
+		);
+
+	return (
+		<BaseButton
+			onClick={() => {
+				setShowAlert(true);
+				buyProduct(product.id);
+			}}
+		>
+			Comprar
+		</BaseButton>
 	);
 }
