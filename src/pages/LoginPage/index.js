@@ -27,7 +27,7 @@ export default function LoginPage() {
 		if (token) navegate("/");
 	}, [token, navegate]);
 
-	async function handlerSubmit(e) {
+	const handlerSubmit = async (e) => {
 		e.preventDefault();
 
 		try {
@@ -40,7 +40,7 @@ export default function LoginPage() {
 			console.log(err);
 			return setMessage({ type: "error", text: err.response.data });
 		}
-	}
+	};
 
 	return (
 		<>
@@ -49,7 +49,7 @@ export default function LoginPage() {
 				<Box>
 					<H1>Bem vindo!</H1>
 					<GreyText>faça o login para continuar</GreyText>
-					<Form onSubmit={(e) => handlerSubmit(e)}>
+					<Form onSubmit={handlerSubmit}>
 						<div>
 							<AiOutlineMail size={20} color="#9098B1" />
 							<input

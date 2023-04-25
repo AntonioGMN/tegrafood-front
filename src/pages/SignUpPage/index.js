@@ -31,12 +31,12 @@ export default function SignUpPage() {
 		if (token) navegate("/");
 	}, [token, navegate]);
 
-	function handleImageChange(e) {
+	const handleImageChange = (e) => {
 		const file = e.target.files[0];
 		setFormData({ ...formData, image: file });
-	}
+	};
 
-	async function handlerSubmit(e) {
+	const handlerSubmit = async (e) => {
 		e.preventDefault();
 
 		if (formData.password !== formData.confirmPassword)
@@ -58,7 +58,7 @@ export default function SignUpPage() {
 			console.log("entrou no erro");
 			return setMessage({ type: "error", text: err.response.data });
 		}
-	}
+	};
 
 	return (
 		<>
@@ -66,7 +66,7 @@ export default function SignUpPage() {
 			<Container center>
 				<H1>Vamos começar!</H1>
 				<GreyText>Crie uma nova conta</GreyText>
-				<Form enctype="multipart/form-data" onSubmit={(e) => handlerSubmit(e)}>
+				<Form enctype="multipart/form-data" onSubmit={handlerSubmit}>
 					<div>
 						<FiUser size={30} color="#9098B1" />
 						<input
@@ -95,7 +95,7 @@ export default function SignUpPage() {
 							placeholder="Foto de perfil"
 							type="file"
 							name="image"
-							onChange={(e) => handleImageChange(e)}
+							onChange={handleImageChange}
 							required
 						/>
 					</div>

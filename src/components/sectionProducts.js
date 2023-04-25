@@ -14,7 +14,6 @@ const SectionProducts = styled.section`
 		gap: 12px;
 	}
 
-	/* border: 1px solid red; */
 	padding-bottom: ${(props) => (props.maxHeight ? "none" : "10px")};
 
 	overflow-y: auto;

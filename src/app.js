@@ -5,6 +5,7 @@ import SignUpPage from "./pages/SignUpPage";
 import AlertProvide from "./contexts/AlertContext.js";
 import AuthProvider from "./contexts/AuthContext.js";
 import FinishShoppingPage from "./pages/FinisheShoppingPage";
+import CreateProductsPage from "./pages/CreateProductsPage";
 
 export default function App() {
 	return (
@@ -16,6 +17,7 @@ export default function App() {
 						<Route path="/cadastro" element={<SignUpPage />} />
 						<Route path="/" element={<ShowProductsPage />} />
 						<Route path="/carrinho" element={<FinishShoppingPage />} />
+						<Route path="/produtos/criar" element={<CreateProductsPage />} />
 					</Routes>
 				</AuthProvider>
 			</AlertProvide>

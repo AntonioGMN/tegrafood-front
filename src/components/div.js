@@ -7,8 +7,9 @@ const Div = styled.div`
 	display: flex;
 	flex-direction: ${(props) => (props.row ? "row" : "column")};
 	justify-content: ${(props) => props.justify};
-	align-items: ${(props) => props.aligh};
+	align-items: ${(props) => props.align};
 	${(props) => props.glow && "flex-grow: 1"};
+	${(props) => props.gap && "gap: 17px"};
 	${(props) => props.gap && "gap: 17px"};
 
 	@media (max-width: 900px) {

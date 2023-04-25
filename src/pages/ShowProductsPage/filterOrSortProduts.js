@@ -97,7 +97,7 @@ export default function FilterOrSortProduts({
 						<u>{productCategory}</u>
 					</UnderlineText>
 				</Div>
-				<Div width="100%" row gap="20px" justify="flex-end" aligh="center">
+				<Div width="100%" row gap="20px" justify="flex-end" align="center">
 					<MdSortByAlpha
 						size={35}
 						color={filters.alphabetical ? "#DC9000" : "#C8C8C8"}
@@ -106,7 +106,7 @@ export default function FilterOrSortProduts({
 							setFilters({ ...filters, alphabetical: !filters.alphabetical });
 						}}
 					/>
-					<Link to="/produto/adicionar">
+					<Link to="/produtos/criar">
 						<BaseButton>Adicionar +</BaseButton>
 					</Link>
 				</Div>
