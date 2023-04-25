@@ -41,3 +41,11 @@ export async function getWithFilter(category, alphabeticalOrder, start, end) {
 export async function create(product) {
 	await instance.post("/products", product, headerConfig());
 }
+
+export async function editeAll(product) {
+	await instance.put("/product/update", product, headerConfig());
+}
+
+export async function edite(product) {
+	await instance.patch("/product/update", product, headerConfig());
+}

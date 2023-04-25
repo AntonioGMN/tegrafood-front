@@ -31,6 +31,7 @@ const DivInput = styled.div`
 
 export const InputImage = styled.div`
 	width: 40vw;
+	height: 250px;
 
 	border: 1px dashed #e5a11f;
 	background: #ffffff;
@@ -38,6 +39,10 @@ export const InputImage = styled.div`
 	flex-direction: column;
 	align-items: center;
 	justify-content: space-evenly;
+
+	img {
+		height: 90%;
+	}
 
 	span,
 	p {
@@ -51,6 +56,10 @@ export const InputImage = styled.div`
 
 	input {
 		display: none;
+	}
+
+	@media (max-width: 900px) {
+		width: 100%;
 	}
 `;
 

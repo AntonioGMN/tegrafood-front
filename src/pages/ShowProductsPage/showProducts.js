@@ -1,7 +1,9 @@
+import { useNavigate } from "react-router-dom";
 import BaseButton from "../../components/baseButton";
 import Div from "../../components/div";
 import SectionProducts, { Article } from "../../components/sectionProducts";
 import { useAuth } from "../../contexts/AuthContext";
+import { useProducts } from "../../contexts/ProductsContext";
 import * as api from "../../service/buyApi";
 
 export default function ShowProducts({
@@ -41,7 +43,16 @@ export default function ShowProducts({
 
 function TypeButton({ product, setShowAlert, setGetProducts }) {
 	const { user } = useAuth();
-	if (user.is_adm) return <BaseButton>Editar</BaseButton>;
+	const navegate = useNavigate();
+	const { saveProductForEdite } = useProducts();
+
+	const goToEditePage = () => {
+		saveProductForEdite(product);
+		navegate("/produtos/editar");
+	};
+
+	if (user.is_adm)
+		return <BaseButton onClick={goToEditePage}>Editar</BaseButton>;
 
 	async function buyProduct(productId) {
 		try {

@@ -43,6 +43,20 @@ export const FormNewProduct = styled.form`
 	justify-content: flex-start;
 	align-items: flex-start;
 	gap: 28px;
+
+	@media (max-width: 900px) {
+		padding: 0;
+
+		div {
+			flex-direction: column;
+		}
+
+		> div {
+			&:nth-child(2) {
+				flex-direction: row;
+			}
+		}
+	}
 `;
 
 export default NewProduct;

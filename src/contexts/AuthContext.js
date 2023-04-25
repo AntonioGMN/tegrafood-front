@@ -1,4 +1,5 @@
 import { createContext, useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import * as api from "../service/authApi";
 import { useAlert } from "./AlertContext";
 
@@ -9,16 +10,17 @@ export default function AuthProvider({ children }) {
 	const [token, setToken] = useState(persistedToken);
 	const persistedUser = JSON.parse(localStorage.getItem("user"));
 	const [user, setUser] = useState(persistedUser);
+	const navegate = useNavigate();
 	const { setMessage } = useAlert();
 
-	async function saveToken(novoToken) {
-		setToken(novoToken);
-		localStorage.setItem("token", JSON.stringify(novoToken));
+	async function saveToken(newToken) {
+		setToken(newToken);
+		localStorage.setItem("token", JSON.stringify(newToken));
 	}
 
-	async function saveUser(novoUser) {
-		setUser(novoUser);
-		localStorage.setItem("user", JSON.stringify(novoUser));
+	async function saveUser(newUser) {
+		setUser(newUser);
+		localStorage.setItem("user", JSON.stringify(newUser));
 	}
 
 	async function logout() {
@@ -30,7 +32,7 @@ export default function AuthProvider({ children }) {
 		}
 
 		localStorage.clear();
-		window.location.replace("/login");
+		navegate("/login");
 	}
 
 	return (
