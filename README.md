@@ -1,18 +1,18 @@
 ## Features Implementadas:
 
-- Sign Up
-- Sign Up como adm (para ver a regra dessa feature cheque o back-end)
-- Login
-- Logout
-- Display Mobile
-- Botão de compras dinámico
-- Compras de produtos
-- Menu lateral
-- Organização dos produtos por ordem alfabética
-- Filtragem de produtos por preço e categoria
-- Carrinho de compras
-- Adição de produtos
-- Edição de produtos
+- [x] Sign Up
+- [x] Sign Up como adm (para ver a regra dessa feature cheque o back-end)
+- [x] Login
+- [x] Logout
+- [x] Display Mobile
+- [x] Botão de compras dinámico
+- [x] Compras de produtos
+- [x] Menu lateral
+- [x] Organização dos produtos por ordem alfabética
+- [x] Filtragem de produtos por preço e categoria
+- [x] Carrinho de compras
+- [x] Adição de produtos
+- [x] Edição de produtos
 
 ## tecnologias
 
