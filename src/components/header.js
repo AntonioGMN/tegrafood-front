@@ -69,6 +69,7 @@ export default function Header({ showMenu, setAlertType }) {
 	const [hide, setHide] = useState(true);
 	const { logout, user } = useAuth();
 	let path;
+
 	if (user !== null) {
 		path = process.env.REACT_APP_API_URL + "uploads/" + user.image;
 	}
@@ -99,8 +100,8 @@ export default function Header({ showMenu, setAlertType }) {
 					alt="erro"
 				/>
 				<HideButton
-					onClick={() => {
-						logout();
+					onClick={async () => {
+						await logout();
 					}}
 					hide={hide}
 				>

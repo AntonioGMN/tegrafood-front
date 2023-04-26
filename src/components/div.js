@@ -12,6 +12,8 @@ const Div = styled.div`
 	${(props) => props.gap && "gap: 17px"};
 	${(props) => props.gap && "gap: 17px"};
 
+	overflow: hidden;
+
 	@media (max-width: 900px) {
 		padding-left: 0px;
 	}

@@ -5,7 +5,6 @@ import Title from "../../components/title";
 import Div from "../../components/div";
 import BaseButton from "../../components/baseButton";
 import Table from "../../components/table";
-import AddCupom from "../../components/addCupom";
 import FinishBuysection from "../../components/FinishBuySection";
 import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
@@ -25,19 +24,21 @@ export default function FinishShoppingPage() {
 		if (!token) navegate("/login");
 	}, [token, navegate]);
 
-	async function saveQuantity() {
+	const saveQuantity = async () => {
 		await products.map(async (p) => {
 			if ("updated" in p) await api.updateQuantity(p.quantity, p.shopping_id);
 		});
-	}
+	};
 
-	async function finishShopping() {
-		await products.map(async (p) => {
-			await api.finishShopping(p.shopping_id);
-		});
+	const finishShopping = async () => {
+		await Promise.all(
+			products.map(async (p) => {
+				await api.finishShopping(p.shopping_id);
+			})
+		);
 		navegate("/");
 		setMessage({ type: "success", text: `Compras realizadas com sucesso` });
-	}
+	};
 
 	return (
 		<Column>
@@ -49,22 +50,16 @@ export default function FinishShoppingPage() {
 					setProducts={setProducts}
 					setPrice={setPrice}
 				/>
-				<Div gap row height="128px" width="95%">
-					<AddCupom row>
-						<p>Cupom de desconto</p>
-						<BaseButton>Adicionar</BaseButton>
-					</AddCupom>
+				<Div gap row width="95%">
 					<Table>
 						<thead>
 							<tr>
-								<th>SubTotal</th>
-								<td>R$ {price}</td>
+								<th>Total</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr>
-								<th>Total</th>
-								<td>Content 6</td>
+								<td>R$ {price}</td>
 							</tr>
 						</tbody>
 					</Table>

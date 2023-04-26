@@ -13,14 +13,28 @@ const DivInput = styled.div`
 	border: 0.5px solid #0000004d;
 	border-radius: 5px;
 
+	section {
+		height: auto;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+
 	label,
-	input {
+	input,
+	p {
 		font-size: 12px;
 		font-weight: 500;
 		line-height: 18px;
 		letter-spacing: 0.5px;
 		text-align: start;
 		color: #00000080;
+	}
+
+	label {
+		display: flex;
+		align: center;
+		justify-content: space-between;
 	}
 
 	input {
@@ -31,9 +45,10 @@ const DivInput = styled.div`
 
 export const InputImage = styled.div`
 	width: 40vw;
-	height: 250px;
+	height: 262px;
 
 	border: 1px dashed #e5a11f;
+	border-radius: 5px;
 	background: #ffffff;
 	display: flex;
 	flex-direction: column;

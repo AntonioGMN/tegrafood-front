@@ -35,7 +35,7 @@ export default function ShoppingQuantityButtom({
 
 	return (
 		<BaseButton width="80px">
-			<Div width="100%" row aligh="center" justify="space-evenly">
+			<Div width="100%" row align="center" justify="space-evenly">
 				{quantity}x
 				<Div>
 					<MdKeyboardArrowUp

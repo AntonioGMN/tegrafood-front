@@ -7,14 +7,14 @@ import Header from "../../components/header";
 import Div from "../../components/div";
 import { useState, useEffect } from "react";
 import * as apiProducts from "../../service/productsApi.js";
-import { useAuth } from "../../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 import AlertProducts from "./alertProducts";
+import { useAlert } from "../../contexts/AlertContext";
 
 export default function ShowProductsPage() {
-	const { token } = useAuth();
 	const navegate = useNavigate();
 	const [products, setProducts] = useState(null);
+	const { setMessage } = useAlert();
 
 	const [showMenu, setShowMenu] = useState(false);
 	const [showAlert, setShowAlert] = useState(false);
@@ -28,8 +28,6 @@ export default function ShowProductsPage() {
 	});
 
 	useEffect(() => {
-		if (!token) navegate("/login");
-
 		async function getProducts() {
 			try {
 				const { alphabetical, byPrice } = filters;
@@ -37,7 +35,6 @@ export default function ShowProductsPage() {
 				let response;
 
 				if (alphabetical || byPrice || filterCategory) {
-					console.log("com filtro");
 					response = await apiProducts.getWithFilter(
 						filterCategory,
 						alphabetical,
@@ -49,13 +46,18 @@ export default function ShowProductsPage() {
 				setProducts(response.data);
 				setGetProductsAgain(false);
 			} catch (err) {
-				console.log(err);
+				return setMessage({ type: "error", text: err.response.data });
 			}
 		}
 		getProducts();
-	}, [filters, priceFilter, filterCategory, token, navegate, getProductsAgain]);
-
-	console.log(products);
+	}, [
+		filters,
+		priceFilter,
+		filterCategory,
+		navegate,
+		getProductsAgain,
+		setMessage,
+	]);
 
 	return (
 		<Div row width="100%" height="100%">

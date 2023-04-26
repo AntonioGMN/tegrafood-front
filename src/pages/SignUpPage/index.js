@@ -55,7 +55,6 @@ export default function SignUpPage() {
 			setMessage({ type: "success", text: `${name} foi cadastrado com sucesso` });
 			navegate("/login");
 		} catch (err) {
-			console.log("entrou no erro");
 			return setMessage({ type: "error", text: err.response.data });
 		}
 	};

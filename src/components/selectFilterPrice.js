@@ -9,18 +9,16 @@ const BoxPriceFilter = styled.section`
 	justify-content: space-around;
 	align-items: center;
 
-	height: 135px;
-	width: 463px;
-	left: 0px;
-	top: 0px;
 	border-radius: 10px;
 	box-shadow: 0px 4px 4px 0px #00000040;
-
 	background: #ffffff;
 
-	position: fixed;
-	top: 120px;
-	left: 600px;
+	position: absolute;
+	left: 0;
+	right: 0;
+	margin: auto;
+	top: 0;
+	z-index: 1;
 
 	p {
 		width: 100%;
@@ -30,10 +28,6 @@ const BoxPriceFilter = styled.section`
 		line-height: 24px;
 		letter-spacing: 0.5px;
 		text-align: center;
-	}
-
-	div {
-		display: flex;
 	}
 
 	button {

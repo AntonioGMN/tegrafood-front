@@ -7,10 +7,14 @@ import { useEffect } from "react";
 import * as api from "../../service/buyApi";
 import { useAuth } from "../../contexts/AuthContext";
 import ShoppingQuantityButtom from "./shoppingQuantity";
+import { useAlert } from "../../contexts/AlertContext";
+import { useState } from "react";
 
 export default function ShowShoppings({ products, setProducts, setPrice }) {
 	const { token } = useAuth();
 	const navegate = useNavigate();
+	const { setMessage } = useAlert();
+	const [getProductsAgain, setGetProductsAgain] = useState(false);
 
 	useEffect(() => {
 		if (!token) navegate("/login");
@@ -19,20 +23,21 @@ export default function ShowShoppings({ products, setProducts, setPrice }) {
 			try {
 				const response = await api.get();
 				setProducts(response.data);
+				setGetProductsAgain(false);
 			} catch (err) {
-				console.log(err);
+				return setMessage({ type: "error", text: err.response.data });
 			}
 		}
 
 		getProducts();
-	}, [token, navegate, setProducts]);
+	}, [token, navegate, setProducts, setMessage, getProductsAgain]);
 
 	async function deleteShopping(shoppingId) {
 		try {
 			await api.deleteById(shoppingId);
-			window.location.reload();
+			setGetProductsAgain(true);
 		} catch (err) {
-			console.log(err);
+			return setMessage({ type: "error", text: err.response.data });
 		}
 	}
 

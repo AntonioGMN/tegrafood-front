@@ -13,6 +13,8 @@ const BuyProductAlert = styled.div`
 	height: 66px;
 	width: 573px;
 
+	overflow: hidden;
+
 	display: ${(props) => (props.show ? "flex" : "none")};
 	justify-content: space-around;
 	align-items: center;

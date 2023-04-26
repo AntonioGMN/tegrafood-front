@@ -5,6 +5,7 @@ import SectionProducts, { Article } from "../../components/sectionProducts";
 import { useAuth } from "../../contexts/AuthContext";
 import { useProducts } from "../../contexts/ProductsContext";
 import * as api from "../../service/buyApi";
+import { useAlert } from "../../contexts/AlertContext";
 
 export default function ShowProducts({
 	products,
@@ -43,6 +44,7 @@ export default function ShowProducts({
 
 function TypeButton({ product, setShowAlert, setGetProducts }) {
 	const { user } = useAuth();
+	const { setMessage } = useAlert();
 	const navegate = useNavigate();
 	const { saveProductForEdite } = useProducts();
 
@@ -59,7 +61,7 @@ function TypeButton({ product, setShowAlert, setGetProducts }) {
 			await api.addToBuyCar(productId);
 			setGetProducts(true);
 		} catch (err) {
-			console.log(err);
+			return setMessage({ type: "error", text: err.response.data });
 		}
 	}
 

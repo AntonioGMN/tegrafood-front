@@ -48,11 +48,6 @@ export default function FilterOrSortProduts({
 	const { user } = useAuth();
 	const [hide, setHide] = useState(true);
 	const [productCategory, setProductCategory] = useState("Todos");
-	function handlerFilterPrice(start, end) {
-		setPriceFilter({ start, end });
-		setHide(!hide);
-		setFilters({ ...filters, byPrice: true });
-	}
 
 	useEffect(() => {
 		switch (filterCategory) {
@@ -76,7 +71,13 @@ export default function FilterOrSortProduts({
 		}
 	}, [filterCategory]);
 
-	function openAndCloseFilterPrice() {
+	const handlerFilterPrice = (start, end) => {
+		setPriceFilter({ start, end });
+		setHide(!hide);
+		setFilters({ ...filters, byPrice: true });
+	};
+
+	const openAndCloseFilterPrice = () => {
 		if (filters.byPrice) {
 			setFilters({ ...filters, byPrice: false });
 			setPriceFilter({ start: false, end: false });
@@ -85,10 +86,9 @@ export default function FilterOrSortProduts({
 		}
 
 		setHide(false);
-	}
+	};
 
-	console.log(user.is_adm);
-	if (user.is_adm)
+	if (user.is_adm) {
 		return (
 			<Section>
 				<Div width="100%" row gap="20px">
@@ -112,6 +112,7 @@ export default function FilterOrSortProduts({
 				</Div>
 			</Section>
 		);
+	}
 
 	return (
 		<Section row padding>
@@ -125,17 +126,17 @@ export default function FilterOrSortProduts({
 				<MdFilterListAlt
 					size={35}
 					color={filters.byPrice ? "#DC9000" : "#C8C8C8"}
-					onClick={() => openAndCloseFilterPrice()}
+					onClick={openAndCloseFilterPrice}
 				/>
 				<BoxPriceFilter hide={hide}>
 					<p>Filtrar por preço:</p>
-					<div>
+					<Div row width="100%" justify="space-evenly">
 						<button onClick={() => handlerFilterPrice(5, 25)}>R$5 à R$25</button>
 						<button onClick={() => handlerFilterPrice(26, 45)}>R$26 à R$45</button>
 						<button onClick={() => handlerFilterPrice(46, false)}>
 							R$46 ou mais
 						</button>
-					</div>
+					</Div>
 				</BoxPriceFilter>
 				<MdSortByAlpha
 					size={35}

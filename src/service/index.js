@@ -20,8 +20,8 @@ instance.interceptors.response.use(
 		return response;
 	},
 	async (err) => {
-		console.log(err);
 		const newReponse = async (resolve, reject) => {
+			console.log(err);
 			const originalReq = err.config;
 			const retry = originalReq._retry;
 			if (err.response.status === 401 && retry !== true) {

@@ -7,12 +7,12 @@ import handlerInput from "../../utils";
 import { Link, useNavigate } from "react-router-dom";
 import * as api from "../../service/productsApi";
 import { useAlert } from "../../contexts/AlertContext";
+import InputCategory from "./inputCategory";
 
 export default function CreateProductsPage() {
 	const [imgSrc, setImgSrc] = useState(null);
 	const fileInputRef = useRef(null);
 	const nameInputRef = useRef(null);
-	const categoryInputRef = useRef(null);
 	const describeInputRef = useRef(null);
 	const priceInputRef = useRef(null);
 	const { setMessage } = useAlert();
@@ -54,12 +54,11 @@ export default function CreateProductsPage() {
 			body.append("price", price);
 			body.append("image", image);
 
+			console.log(formData);
 			await api.create(body);
 			setMessage({ type: "success", text: `${name} foi cadastrado com sucesso` });
 			navegate("/");
 		} catch (err) {
-			console.log("entrou no erro");
-			console.log(err);
 			return setMessage({ type: "error", text: err.response.data });
 		}
 	};
@@ -69,27 +68,20 @@ export default function CreateProductsPage() {
 			<h1>Novo Item</h1>
 			<FormNewProduct enctype="multipart/form-data" onSubmit={handlerSubmit}>
 				<Div width="100%" gap="20px">
-					<Div row height="262px" width="100%" gap="20px">
+					<Div row width="100%" gap="20px">
 						<Div width="100%" gap="20px">
-							<Div height="100%" justify="space-between">
+							<Div height="262px" justify="space-between">
 								<DivInput onClick={() => nameInputRef.current.focus()}>
 									<label>Nome</label>
 									<input
 										type="text"
 										name="name"
+										required
 										ref={nameInputRef}
 										onChange={(e) => handlerInput(e, formData, setFormData)}
 									/>
 								</DivInput>
-								<DivInput onClick={() => categoryInputRef.current.focus()}>
-									<label>Categoria</label>
-									<input
-										type="text"
-										name="category"
-										ref={categoryInputRef}
-										onChange={(e) => handlerInput(e, formData, setFormData)}
-									/>
-								</DivInput>
+								<InputCategory formData={formData} setFormData={setFormData} />
 								<DivInput
 									height="96px"
 									onClick={() => describeInputRef.current.focus()}
@@ -98,6 +90,7 @@ export default function CreateProductsPage() {
 									<input
 										type="text"
 										name="description"
+										required
 										ref={describeInputRef}
 										onChange={(e) => handlerInput(e, formData, setFormData)}
 									/>
@@ -108,6 +101,7 @@ export default function CreateProductsPage() {
 							<input
 								type="file"
 								name="image"
+								required
 								ref={fileInputRef}
 								id="fileInput"
 								onChange={handleFileChange}
@@ -124,6 +118,7 @@ export default function CreateProductsPage() {
 						<label>Valor</label>
 						<input
 							type="number"
+							required
 							ref={priceInputRef}
 							name="price"
 							onChange={(e) => handlerInput(e, formData, setFormData)}

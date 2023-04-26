@@ -6,7 +6,6 @@ export async function signUp(user) {
 
 export async function login(user) {
 	const r = await instance.post("login", user);
-	console.log(r);
 	return r;
 }
 

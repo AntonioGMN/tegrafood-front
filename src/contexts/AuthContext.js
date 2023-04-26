@@ -1,7 +1,6 @@
 import { createContext, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as api from "../service/authApi";
-import { useAlert } from "./AlertContext";
 
 const AuthContext = createContext();
 
@@ -11,7 +10,6 @@ export default function AuthProvider({ children }) {
 	const persistedUser = JSON.parse(localStorage.getItem("user"));
 	const [user, setUser] = useState(persistedUser);
 	const navegate = useNavigate();
-	const { setMessage } = useAlert();
 
 	async function saveToken(newToken) {
 		setToken(newToken);
@@ -24,14 +22,9 @@ export default function AuthProvider({ children }) {
 	}
 
 	async function logout() {
-		try {
-			await api.logout();
-		} catch (err) {
-			console.log(err);
-			setMessage({ text: err });
-		}
-
+		await api.logout();
 		localStorage.clear();
+		setToken(null);
 		navegate("/login");
 	}
 

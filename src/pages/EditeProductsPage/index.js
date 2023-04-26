@@ -8,11 +8,11 @@ import { Link, useNavigate } from "react-router-dom";
 import * as api from "../../service/productsApi";
 import { useAlert } from "../../contexts/AlertContext";
 import { useProducts } from "../../contexts/ProductsContext";
+import InputCategory from "../CreateProductsPage/inputCategory";
 
 export default function EditeProductsPage() {
 	const fileInputRef = useRef(null);
 	const nameInputRef = useRef(null);
-	const categoryInputRef = useRef(null);
 	const describeInputRef = useRef(null);
 	const priceInputRef = useRef(null);
 
@@ -69,7 +69,7 @@ export default function EditeProductsPage() {
 			}
 
 			setMessage({ type: "success", text: `${name} foi editado com sucesso` });
-			navegate("/produtos/editar");
+			navegate("/");
 		} catch (err) {
 			return setMessage({ type: "error", text: err.response.data });
 		}
@@ -81,42 +81,28 @@ export default function EditeProductsPage() {
 			<FormNewProduct enctype="multipart/form-data" onSubmit={handlerSubmit}>
 				<Div width="100%" gap="20px">
 					<Div row width="100%" gap="20px">
-						<Div width="100%">
-							<Div height="100%" justify="space-between">
-								<DivInput onClick={() => nameInputRef.current.focus()}>
-									<label>Nome</label>
-									<input
-										type="text"
-										name="name"
-										value={formData.name}
-										ref={nameInputRef}
-										onChange={(e) => handlerInput(e, formData, setFormData)}
-									/>
-								</DivInput>
-								<DivInput onClick={() => categoryInputRef.current.focus()}>
-									<label>Categoria</label>
-									<input
-										type="text"
-										name="category"
-										value={formData.category}
-										ref={categoryInputRef}
-										onChange={(e) => handlerInput(e, formData, setFormData)}
-									/>
-								</DivInput>
-								<DivInput
-									height="96px"
-									onClick={() => describeInputRef.current.focus()}
-								>
-									<label>Descrição</label>
-									<input
-										type="text"
-										name="description"
-										value={formData.description}
-										ref={describeInputRef}
-										onChange={(e) => handlerInput(e, formData, setFormData)}
-									/>
-								</DivInput>
-							</Div>
+						<Div width="100%" height="262px" justify="space-between">
+							<DivInput onClick={() => nameInputRef.current.focus()}>
+								<label>Nome</label>
+								<input
+									type="text"
+									name="name"
+									value={formData.name}
+									ref={nameInputRef}
+									onChange={(e) => handlerInput(e, formData, setFormData)}
+								/>
+							</DivInput>
+							<InputCategory formData={formData} setFormData={setFormData} />
+							<DivInput height="96px" onClick={() => describeInputRef.current.focus()}>
+								<label>Descrição</label>
+								<input
+									type="text"
+									name="description"
+									value={formData.description}
+									ref={describeInputRef}
+									onChange={(e) => handlerInput(e, formData, setFormData)}
+								/>
+							</DivInput>
 						</Div>
 						<InputImage>
 							<input

@@ -17,6 +17,7 @@ export const Form = styled.form`
 	text-align: center;
 
 	a {
+		width: 100%;
 		color: #9098b1;
 	}
 
@@ -50,7 +51,6 @@ export const Form = styled.form`
 	}
 
 	@media (max-width: 900px) {
-		height: 100%;
 		width: 100%;
 
 		align-items: start;

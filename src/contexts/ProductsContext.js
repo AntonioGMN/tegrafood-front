@@ -1,14 +1,14 @@
-import { useEffect } from "react";
+// import { useEffect } from "react";
 import { createContext, useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useAlert } from "./AlertContext";
-import { useAuth } from "./AuthContext";
+// import { useNavigate } from "react-router-dom";
+// import { useAlert } from "./AlertContext";
+// import { useAuth } from "./AuthContext";
 const ProductsContext = createContext();
 
 export default function ProductsProvider({ children }) {
-	const { token } = useAuth();
-	const { setMessage } = useAlert();
-	const navegate = useNavigate();
+	// const { token } = useAuth();
+	// const { setMessage } = useAlert();
+	// const navegate = useNavigate();
 	const persistedProductForEdite = JSON.parse(
 		localStorage.getItem("ProductForEdite")
 	);
@@ -16,12 +16,12 @@ export default function ProductsProvider({ children }) {
 		persistedProductForEdite
 	);
 
-	useEffect(() => {
-		if (!token) {
-			navegate("/login");
-			setMessage({ type: "warning", text: `Efetue o login por gentiliza` });
-		}
-	}, [token, navegate, setMessage]);
+	// useEffect(() => {
+	// 	if (!token) {
+	// 		navegate("/login");
+	// 		setMessage({ type: "warning", text: `Efetue o login por gentiliza` });
+	// 	}
+	// }, [token, navegate, setMessage]);
 
 	async function saveProductForEdite(newProductForEdite) {
 		setProductForEdite(newProductForEdite);
