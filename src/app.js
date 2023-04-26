@@ -9,6 +9,7 @@ import CreateProductsPage from "./pages/CreateProductsPage";
 import EditeProductsPage from "./pages/EditeProductsPage";
 import ProductsProvider from "./contexts/ProductsContext";
 import PrivateAuthRoutes from "./Guards/PrivateAuthRouter";
+import PrivateAdmRoutes from "./Guards/PrivateAdmRouter";
 
 export default function App() {
 	return (
@@ -22,8 +23,10 @@ export default function App() {
 							<Route element={<PrivateAuthRoutes />}>
 								<Route path="/" element={<ShowProductsPage />} />
 								<Route path="/carrinho" element={<FinishShoppingPage />} />
-								<Route path="/produtos/criar" element={<CreateProductsPage />} />
-								<Route path="/produtos/editar" element={<EditeProductsPage />} />
+								<Route element={<PrivateAdmRoutes />}>
+									<Route path="/produtos/criar" element={<CreateProductsPage />} />
+									<Route path="/produtos/editar" element={<EditeProductsPage />} />
+								</Route>
 							</Route>
 						</Routes>
 					</ProductsProvider>
