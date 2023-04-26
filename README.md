@@ -35,13 +35,13 @@ As seguinte tecnologias foram usadas para construir esse projeto:<br>
 git clone https://github.com/AntonioGMN/tegrafood-front.git
 ```
 
-### 2- Clone o back-end desse repositório e executio
+### 2- Clone o back-end desse repositório
 
 ```
 git clone https://github.com/AntonioGMN/tegrafood-back.git
 ```
 
-### 3- Create a .env file with:
+### 3- Crie um arquivo.env com:
 
 ```
 REACT_APP_BASE_URL=http://localhost:5000
