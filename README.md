@@ -47,7 +47,7 @@ git clone https://github.com/AntonioGMN/tegrafood-back.git
 REACT_APP_BASE_URL=http://localhost:5000
 ```
 
-### 4. Siga as instruções do back-end para roda-ĺo
+### 4. Siga as instruções do back-end para executa-lo
 
 ### 5. Instale as dependências com:
 
